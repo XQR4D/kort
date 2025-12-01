@@ -1,4 +1,3 @@
-        // Загрузка списка пользователей
 function loadUsers() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     fetch(`${API_URL}/admin/users`, {
@@ -16,7 +15,7 @@ function loadUsers() {
         })
         .then((users) => {
             const userTable = document.getElementById("userTable");
-            userTable.innerHTML = ""; // Очистить таблицу
+            userTable.innerHTML = "";
 
             users.forEach((user) => {
                 const row = document.createElement("tr");
@@ -38,7 +37,6 @@ function loadUsers() {
         .catch((error) => alert(error.message));
 }
 
-        // Удаление пользователя
         function deleteUser(userId) {
             if (!confirm("Вы уверены, что хотите удалить пользователя?")) return;
 
@@ -53,10 +51,9 @@ function loadUsers() {
                 .catch((error) => console.error("Ошибка удаления пользователя:", error));
         }
 
-        // Изменение баланса пользователя
         function updateBalance(userId) {
             const newBalance = prompt("Введите новый баланс:");
-            if (newBalance === null) return; // Отмена действия
+            if (newBalance === null) return;
 
             fetch(`${API_URL}/admin/users/${userId}/balance`, {
                 method: "POST",
@@ -73,7 +70,6 @@ function loadUsers() {
                 .catch((error) => console.error("Ошибка обновления баланса:", error));
         }
 
-        // Просмотр логов пользователя
         function viewLogs(userId) {
             fetch(`${API_URL}/admin/logs/${userId}`)
                 .then((response) => response.json())
@@ -86,5 +82,4 @@ function loadUsers() {
                 .catch((error) => console.error("Ошибка загрузки логов:", error));
         }
 
-        // Загрузка данных при открытии страницы
         loadUsers();

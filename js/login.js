@@ -1,4 +1,3 @@
-// Упрощённые данные пользователей
 const users = [
     { username: "admin", password: "admin" },
     { username: "anna", password: "anna" },
@@ -10,31 +9,27 @@ const users = [
 ];
 
 document.getElementById("loginForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // Предотвращаем отправку формы
+    e.preventDefault();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Проверяем логин и пароль
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        // Сохраняем пользователя в localStorage
         localStorage.setItem("loggedUser", JSON.stringify(user));
-        window.location.href = "account.html"; // Перенаправляем в личный кабинет
+        window.location.href = "account.html";
     } else {
         document.getElementById("error-message").textContent = "Неверное имя пользователя или пароль!";
     }
 });
 
-// Функция для логирования событий
 function logEvent(event) {
     const logs = JSON.parse(localStorage.getItem("logs")) || [];
     logs.push({ event, time: new Date().toISOString() });
     localStorage.setItem("logs", JSON.stringify(logs));
 }
 
-// Функция для регистрации пользователя
 function register() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -57,20 +52,17 @@ function register() {
     alert("Регистрация успешна!");
 }
 
- // Обработчик формы сброса пароля
  const resetForm = document.getElementById('resetForm');
  resetForm.addEventListener('submit', function(event) {
      event.preventDefault();
      
      const email = document.getElementById('email').value;
 
-     // Простая проверка почты
      if (!email) {
          alert("Введите ваш адрес электронной почты.");
          return;
      }
 
-     // Событие отправки запроса на сброс.
      alert(`На адрес ${email} отправлены инструкции для сброса пароля.`);
-     resetForm.reset(); // Сброс формы после отправки
+     resetForm.reset();
  });

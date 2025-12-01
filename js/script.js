@@ -1,56 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Ждём окончания анимации прелоадера
     setTimeout(() => {
         const loader = document.getElementById("loader");
         const content = document.getElementById("content");
         
-        // Скрываем прелоадер и показываем контент
         loader.style.display = "none";
         content.classList.remove("hidden");
         content.classList.add("show");
-    }, 200); // Задержка в 200 милисекунд
+    }, 200);
 });
 
-// Инициализация карты
 ymaps.ready(initMap);
 
 function initMap() {
-    const location1 = [52.622659, 39.570177]; // Первая метка: Гагарина 97
-    const location2 = [52.588861, 39.620258]; // Вторая метка: Зои Космодемьянской 2Б
-    const location3 = [52.598654, 39.569739]; // Вторая метка: Проспект Победы, 21
+    const location1 = [52.622659, 39.570177];
+    const location2 = [52.588861, 39.620258];
+    const location3 = [52.598654, 39.569739];
 
-    // Создание карты
     const map = new ymaps.Map("map", {
-        center: location1, // Центрируем на первой локации
-        zoom: 12, // Зум для отображения обеих меток
-        controls: ['zoomControl', 'geolocationControl'], // Элементы управления
+        center: location1,
+        zoom: 12,
+        controls: ['zoomControl', 'geolocationControl'],
     });
 
-    // Первая метка
     const placemark1 = new ymaps.Placemark(location1, {
         hintContent: "Объект на Гагарина 97",
         balloonContent: "ЛКБ-Финанс",
     }, {
-        preset: 'islands#blackDotIcon', // Вид метки
+        preset: 'islands#blackDotIcon',
     });
 
-    // Вторая метка
     const placemark2 = new ymaps.Placemark(location2, {
         hintContent: "Объект на Зои Космодемьянской 2Б",
         balloonContent: "Главное здание",
     }, {
-        preset: 'islands#blackDotIcon', // Вид метки
+        preset: 'islands#blackDotIcon',
     });
 
-    // Третья метка
     const placemark3 = new ymaps.Placemark(location3, {
         hintContent: "Объект на Проспекте Победы, 21",
         balloonContent: "Магазин одежды",
     }, {
-        preset: 'islands#blackDotIcon', // Вид метки
+        preset: 'islands#blackDotIcon',
     });
 
-    // Добавляем метки на карту
     map.geoObjects.add(placemark1);
     map.geoObjects.add(placemark2);
     map.geoObjects.add(placemark3);
@@ -60,7 +52,6 @@ function initMap() {
 let slideIndex = 0;
         let slides = document.querySelectorAll('.slides');
 
-        // Функция для показа слайдов
         function showSlide(index) {
             if (index >= slides.length) slideIndex = 0;
             if (index < 0) slideIndex = slides.length - 1;
@@ -70,7 +61,6 @@ let slideIndex = 0;
             });
         }
 
-        // Навигация по слайдам
         document.querySelectorAll('.next').forEach((button, index) => {
             button.addEventListener('click', () => {
                 slideIndex++;
@@ -85,34 +75,27 @@ let slideIndex = 0;
             });
         });
 
-        // Инициализация первого слайда
         showSlide(slideIndex);
 
-/*Страница оплаты*/
 function updateOptions() {
     const paymentMethod = document.getElementById('payment-method').value;
     const secondarySelectContainer = document.getElementById('secondary-select-container');
     const addCardSection = document.getElementById('add-card-section');
 
-    // При выборе "Не выбрано" скрываем все дополнительные поля
     if (paymentMethod === 'none') {
       secondarySelectContainer.classList.add('hidden');
       addCardSection.classList.remove('visible');
     } else if (paymentMethod === 'card' || paymentMethod === 'paypal') {
-      // Скрываем выбор "Банк / Кошелек" для "Банковская карта" и "PayPal"
       secondarySelectContainer.classList.add('hidden');
-      // Показываем секцию добавления карты для "Банковская карта"
       if (paymentMethod === 'card'|| paymentMethod === 'paypal') {
         addCardSection.classList.add('visible');
       } else {
         addCardSection.classList.remove('visible');
       }
     } else {
-      // Показываем выбор "Банк / Кошелек" для других методов
       secondarySelectContainer.classList.remove('hidden');
       addCardSection.classList.remove('visible');
 
-      // Если выбран "Криптовалюта", меняем варианты на кошельки
       if (paymentMethod === 'crypto') {
         const secondarySelect = document.getElementById('secondary-select');
         secondarySelect.innerHTML = `
@@ -122,7 +105,6 @@ function updateOptions() {
           <option value="ripple">Ripple</option>
         `;
       } else {
-        // Восстанавливаем стандартные банки для других методов оплаты
         const secondarySelect = document.getElementById('secondary-select');
         secondarySelect.innerHTML = `
           <option value="sberbank">Сбер</option>
@@ -146,7 +128,6 @@ function updateOptions() {
     Notification.requestPermission().then(permission => {
         if (permission === 'granted') {
             statusElement.textContent = 'Уведомления включены!';
-            // Пример отправки тестового уведомления
             showTestNotification();
         } else if (permission === 'denied') {
             statusElement.textContent = 'Вы запретили отправку уведомлений.';
@@ -160,23 +141,20 @@ function updateOptions() {
     });
 }
 
-// Функция для отправки тестового уведомления
 function showTestNotification() {
     new Notification('Привет!', {
         body: 'Спасибо что разрешили уведомления на нашем сайте.',
-        icon: 'favicon.svg' // Логотип или иконка
+        icon: 'favicon.svg'
     });
 }
 
-// Функция для скрытия статуса через определённое время
 function hideStatusAfterDelay() {
     const statusElement = document.getElementById('notification-status');
     setTimeout(() => {
-        statusElement.textContent = ''; // Очистка содержимого элемента
-    }, 2000); // 2000 миллисекунд = 2 секунды
+        statusElement.textContent = '';
+    }, 2000);
 }
 
-// Запрос разрешения при загрузке страницы
 window.addEventListener('load', () => {
     requestNotificationPermission();
 });
@@ -197,18 +175,16 @@ function calculate() {
 
     document.getElementById('result').textContent = `Итого к оплате: ${total.toLocaleString('ru-RU')} ₽`;
 
-    // Показываем таблицу платежей
     const tableHTML = generatePaymentTable(rent, months);
     document.getElementById('paymentTable').innerHTML = tableHTML;
 
-    // Сохраняем результат
     const newEntry = {
       rent, months, commission, total, date: new Date().toLocaleString()
     };
 
     let history = JSON.parse(localStorage.getItem('rentHistory')) || [];
-    history.unshift(newEntry); // добавляем в начало
-    if (history.length > 5) history = history.slice(0, 5); // максимум 5 записей
+    history.unshift(newEntry);
+    if (history.length > 5) history = history.slice(0, 5);
     localStorage.setItem('rentHistory', JSON.stringify(history));
 
     renderHistory();
@@ -250,5 +226,4 @@ function calculate() {
     document.getElementById('result').textContent = '';
   }
 
-  // Загружаем при старте
   renderHistory();
