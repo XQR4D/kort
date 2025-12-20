@@ -1,5 +1,3 @@
-# Kort Website
-
 ![Kort Logo](img/logo.svg)
 
 Официальный сайт коммерческой организации **Kort**.
