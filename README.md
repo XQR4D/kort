@@ -47,10 +47,6 @@
 - ├── js/                      # JavaScript-файлы
 - └── Plan Zdaniy/             # Планы зданий
 
-## Запуск
-
-Откройте `kort.html` в браузере или разверните через GitHub Pages / любой статический хостинг.
-
 ## Лицензия
 
 [MIT License](https://github.com/onenicked/kort?tab=readme-ov-file#)
