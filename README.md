@@ -24,14 +24,28 @@
 - JavaScript
 
 ## Структура проекта
-
-/
-├── img/                # Изображения
-├── js/                 # JavaScript-файлы
-├── Plan Zdaniy/        # Планы зданий
-├── styles.css          # Основные стили
-├── kort.html           # Главная страница
-└── *.html              # Остальные страницы
+- /
+- ├── .htaccess
+- ├── 404.html
+- ├── README.md
+- ├── favicon.ico
+- ├── favicon.svg
+- ├── styles.css
+- ├── kort.html                # Главная страница
+- ├── company.html             # О компании
+- ├── contacts.html            # Контакты
+- ├── rentroom.html            # Аренда помещений
+- ├── publicroom.html          # Публичные пространства
+- ├── partners.html            # Партнёры
+- ├── pay.html                 # Оплата
+- ├── account.html             # Личный кабинет
+- ├── modpanel.html            # Панель модератора
+- ├── login.html               # Вход
+- ├── resetpassword.html       # Восстановление пароля
+- ├── unnavaible.html          # Страница недоступности
+- ├── img/                     # Изображения
+- ├── js/                      # JavaScript-файлы
+- └── Plan Zdaniy/             # Планы зданий
 
 ## Запуск
 
